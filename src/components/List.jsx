@@ -5,7 +5,8 @@ import Card from './Card'
 
 function List() {
 
-    const { movieList } = useSelector(state => state.movie)
+    const movieState = useSelector(state => state.movie)
+    const movieList = movieState.movieList
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -17,13 +18,16 @@ function List() {
 
     return (
         <>
-            {
-                movieList.map((m, ind) => {
-                    return (
-                        <Card movieData={m} key={ind} />
-                    )
-                })
-            }
+            <div className="row">
+                {
+                    movieList.map((m, ind) => {
+                        return (
+                            <Card movieData={m} key={ind} />
+                        )
+                    })
+                }
+            </div>
+
         </>
     )
 }

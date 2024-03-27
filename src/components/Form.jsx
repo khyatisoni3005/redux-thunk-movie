@@ -10,11 +10,21 @@ function Form() {
     const [movieData, setMovieData] = useState({})
 
     function handleChange(e) {
+        console.log(movieData.releaseDate, "ubijkbj");
         setMovieData({ ...movieData, [e.target.name]: e.target.value })
+
+
+        // console.log(movieData, "moviedaa");
     }
 
-    function addData(movieData) {
+    function addData() {
+        console.log("moviedata 222222222", movieData);
         dispatch(addMovieData(movieData))
+        setMovieData({
+            name: "",
+            director: "",
+            releaseDate: ""
+        })
     }
 
     return (
@@ -26,15 +36,15 @@ function Form() {
 
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" onChange={handleChange} name='name' class="form-control" />
+                        <input type="text" onChange={handleChange} name='name' value={movieData.name} class="form-control" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Director Name</label>
-                        <input type="text" name='director' onChange={handleChange} class="form-control" />
+                        <input type="text" name='director' value={movieData.director} onChange={handleChange} class="form-control" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ReleaseDate</label>
-                        <input type="text" name='ReleaseDate' onChange={handleChange} class="form-control" />
+                        <input type="text" name='releaseDate' value={movieData.releaseDate} onChange={handleChange} class="form-control" />
                     </div>
 
                     <button class="btn btn-primary" onClick={addData}>Submit</button>
