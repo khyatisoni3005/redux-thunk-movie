@@ -10,6 +10,9 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
+const API_URL = 'https://movie-backend-1k3z.onrender.com'
+// const API_URL = 'http://localhost:5000'
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -134,7 +137,7 @@ function CustomModal() {
     useEffect(() => {
         if (viewId) {
             setOpen(true)
-            axios.get(`http://localhost:5000/api/movie/view/${viewId}`)
+            axios.get(`${API_URL}/api/movie/view/${viewId}`)
                 .then((res) => {
                     setMovieData(res.data)
                 })

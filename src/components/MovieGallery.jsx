@@ -34,7 +34,7 @@ function MoviesGallery() {
                 <button className='searchGenres' onClick={() => handleGenreClick('Romantic')}>Romantic</button>
                 {/* Alex can add more genres as needed */}
             </div>
-            <div className="row">
+            <div className="row m-2">
                 {filteredMovies.map(movie => (
                     <Card key={movie._id} movieData={movie} /> // Display each movie in Alex's collection based on the selected genre
                 ))}
