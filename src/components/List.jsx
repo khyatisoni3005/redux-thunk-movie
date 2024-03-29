@@ -10,15 +10,12 @@ function List() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-
         dispatch(getMovieData())
     }, [])
 
-
-
     return (
         <>
-            <div className="row">
+            <div className="row m-1">
                 {
                     movieList.map((m, ind) => {
                         return (
@@ -27,7 +24,6 @@ function List() {
                     })
                 }
             </div>
-
         </>
     )
 }

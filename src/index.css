@@ -11,3 +11,65 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background-color: black;
+}
+
+body {
+  background-color: rgb(52, 52, 52);
+  color: rgb(193, 193, 193);
+  overflow-x: hidden;
+}
+
+.card {
+  background-color: rgb(29, 29, 29);
+
+}
+
+input {
+  color: white;
+}
+
+.modal {
+  background-color: rgb(33, 33, 33);
+  color: white;
+}
+
+.modal .modalBox {
+  background-color: transparent;
+}
+
+label {
+  color: white;
+}
+
+.modalInput {
+  background-color: rgb(65, 65, 65);
+  width: 96%;
+  padding: 10px 0px;
+  border-radius: 12px;
+}
+
+.modalSelect {
+  background-color: rgb(65, 65, 65);
+  padding: 0px 190px 0px 0px;
+  color: white;
+  width: 96%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+.em {
+  color: white;
+}
+
+.searchGenres {
+  margin-left: 10px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background-color: gray;
+  color: white;
+
+}
