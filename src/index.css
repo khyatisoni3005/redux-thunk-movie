@@ -73,3 +73,11 @@ label {
   color: white;
 
 }
+
+.selectedGenres {
+  margin-left: 10px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background-color: #1a90ff;
+  color: white;
+}

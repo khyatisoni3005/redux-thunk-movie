@@ -28,10 +28,10 @@ function MoviesGallery() {
         <>
             <div className="genre-buttons">
                 <button className='searchGenres' onClick={() => handleGenreClick('')}>All Genres</button>
-                <button className='searchGenres' onClick={() => handleGenreClick('Action')}>Action</button>
-                <button className='searchGenres' onClick={() => handleGenreClick('Comedy')}>Comedy</button>
-                <button className='searchGenres' onClick={() => handleGenreClick('Thriller')}>Thriller</button>
-                <button className='searchGenres' onClick={() => handleGenreClick('Romantic')}>Romantic</button>
+                <button className={selectedGenre == 'Action' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Action')}>Action</button>
+                <button className={selectedGenre == 'Comedy' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Comedy')}>Comedy</button>
+                <button className={selectedGenre == 'Thriller' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Thriller')}>Thriller</button>
+                <button className={selectedGenre == 'Romantic' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Romantic')}>Romantic</button>
                 {/* Alex can add more genres as needed */}
             </div>
             <div className="row m-2">
