@@ -91,8 +91,3 @@ export const searchMovie = (searchInput) => {
 }
 
 
-// search movies by genres 
-export const setSelectedGenre = (genre) => ({
-    type: SET_SELECTED_GENRE,
-    payload: genre,
-})

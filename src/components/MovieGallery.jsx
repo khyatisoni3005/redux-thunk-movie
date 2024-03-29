@@ -4,12 +4,13 @@ import { getMovieData } from '../redux/actions/MovieActions'; // Assuming this a
 import Card from './Card'; // Adjust the path as necessary
 
 function MoviesGallery() {
-    const [selectedGenre, setSelectedGenre] = useState('');
+
+    const dispatch = useDispatch();
     const movieState = useSelector(state => state.movie);
     const movieList = movieState.movieList
     // Adjust according to your Redux state structure
-    const dispatch = useDispatch();
 
+    const [selectedGenre, setSelectedGenre] = useState('');
     useEffect(() => {
         dispatch(getMovieData()); // Fetch movies data on component mount, Alex's movie collection
     }, [dispatch]);
