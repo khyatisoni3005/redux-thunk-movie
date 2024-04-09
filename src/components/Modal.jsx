@@ -9,9 +9,11 @@ import axios from 'axios';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-
-const API_URL = 'https://movie-backend-1k3z.onrender.com'
-// const API_URL = 'http://localhost:5000'
+import LoginPage from './login/LoginPage';
+import SignUp from "./login/SignUp"
+import { logOut } from '../redux/actions/authActions';
+// const API_URL = 'https://movie-backend-1k3z.onrender.com'
+const API_URL = 'http://localhost:5000'
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -58,12 +60,14 @@ function CustomModal() {
         director: "",
         releaseYear: "",
         _id: "",
-        genres: [],
+        genres: {},
     })
 
     // multipule fild
     const [selectedNames, setSelectedNames] = useState([]);
     const [open, setOpen] = React.useState(false);
+    const [loginOpen, setLoginOpen] = React.useState(false)
+    const [signUpOpen, setSignUpOpen] = React.useState(false)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -71,6 +75,9 @@ function CustomModal() {
 
     const movieState = useSelector((state) => state.movie)
     let viewId = movieState.viewMovieId
+
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    console.log(isLoggedIn);
 
 
 
@@ -102,7 +109,7 @@ function CustomModal() {
             director: "",
             releaseDate: "",
             _id: "",
-            genres: [{}]
+            genres: {}
         })
         setOpen(false)
     }
@@ -115,24 +122,24 @@ function CustomModal() {
             director: "",
             releaseDate: "",
             _id: "",
-            genres: [{}]
+            genres: {}
         })
         setOpen(false)
     }
 
-    // emptty id
-    useEffect(() => {
-        if (!open) {
-            setMovieData({
-                name: "",
-                director: "",
-                releaseDate: "",
-                _id: ""
-            })
-            dispatch(emptyViewMovieId())
-        }
-    }, [open])
 
+
+    function handleSignUpOpen() {
+        setSignUpOpen(true)
+    }
+
+    function handleLoginOpen() {
+        setLoginOpen(true)
+    }
+
+    function handleLogOut() {
+        dispatch(logOut())
+    }
     // view id
     useEffect(() => {
         if (viewId) {
@@ -147,14 +154,38 @@ function CustomModal() {
     // add genres in moviedata
     useEffect(() => {
         setMovieData({ ...movieData, genres: selectedNames })
+        console.log(selectedNames, "sn");
     }, [selectedNames])
 
+
+    // emptty id
+    useEffect(() => {
+        if (!open) {
+            setMovieData({
+                name: "",
+                director: "",
+                releaseDate: "",
+                _id: "",
+                genres: {}
+            })
+            dispatch(emptyViewMovieId())
+        }
+    }, [open])
     return (
         <>
             <div>
-                <button className='btn btn-primary' style={{ marginTop: "34px", color: "white" }} onClick={handleOpen}>ADD MOVIE</button>
 
-                <Modal
+                {isLoggedIn ? (
+                    <>
+                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "21px" }} onClick={handleOpen}>ADD MOVIE</button>
+                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleLogOut}>LOGOUT</button>
+                    </>
+                ) : (
+                    <>
+                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleSignUpOpen}>SIGN UP</button>
+                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleLoginOpen}>LOG IN</button>
+                    </>
+                )} <Modal
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
@@ -163,7 +194,7 @@ function CustomModal() {
 
                     <Box sx={style} className="modalBox" style={{ width: "600px" }}>
 
-                        <Typography id="modal-modal-title" style={{ color: "white" }} variant="h6" component="h2">
+                        <Typography id="modal-modal-title" style={{ color: "white", marginLeft: "86px" }} variant="h6" component="h2">
                             ADD MOVIE
                         </Typography>
 
@@ -216,6 +247,8 @@ function CustomModal() {
                         </Typography>
                     </Box>
                 </Modal>
+                {loginOpen && <LoginPage loginOpen={loginOpen} />}
+                {signUpOpen && <SignUp signUpOpen={signUpOpen} />}
             </div>
         </>
     )

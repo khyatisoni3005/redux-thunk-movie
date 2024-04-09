@@ -4,8 +4,6 @@ import { deleteMovieData, viewMovieData } from '../redux/actions/MovieActions'
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
@@ -41,12 +39,12 @@ function Card({ movieData }) {
                                 <h2 class="card-title " style={{ display: "inline-block", color: "white" }}>{movieData.name}</h2>
                             </div>
                             <div className="col-3 ">
-                                <DeleteIcon style={{ marginLeft: "0px" }} onClick={() => {
+                                {/* <DeleteIcon style={{ marginLeft: "0px" }} onClick={() => {
                                     deleteData(movieData._id)
                                 }} />
                                 <EditIcon style={{ marginLeft: "10px" }} onClick={() => {
                                     viewData(movieData._id)
-                                }} />
+                                }} /> */}
                             </div>
                         </div>
                         <div className="row">

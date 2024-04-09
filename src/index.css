@@ -27,13 +27,10 @@ body {
 
 }
 
-input {
-  color: white;
-}
 
 .modal {
   background-color: rgb(33, 33, 33);
-  color: white;
+
 }
 
 .modal .modalBox {
@@ -47,7 +44,7 @@ label {
 .modalInput {
   background-color: rgb(65, 65, 65);
   width: 96%;
-  padding: 10px 0px;
+  padding: 10px 12px;
   border-radius: 12px;
 }
 

@@ -1,15 +1,14 @@
 import axios from "axios";
 import { CREATE_MOVIE_DATA, DELETE_MOVIE_DATA, EMPTY_MOVIE_ID, GET_MOVIE_DATA, SEARCH_MOVIE_DATA, SET_SELECTED_GENRE, UPDATE_MOVIE_DATA, VIEW_MOVIE_DATA } from "../type"
 
-const API_URL = 'https://movie-backend-1k3z.onrender.com'
-// const API_URL = 'http://localhost:5000'
+// const API_URL = 'https://movie-backend-1k3z.onrender.com'
+const API_URL = 'http://localhost:5000'
 
 // get data
 export const getMovieData = () => {
     return (dispatch) => {
         axios.get(`${API_URL}/api/movie/list`)
             .then((res) => {
-                console.log(res.data, "res.data");
                 let movieData = res.data
                 dispatch({
                     type: GET_MOVIE_DATA,

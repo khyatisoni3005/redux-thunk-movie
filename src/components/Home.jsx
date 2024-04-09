@@ -17,7 +17,6 @@ function Home() {
     }
 
     useEffect(() => {
-        console.log("searchInput useeffect", searchInput);
         dispatch(searchMovie(searchInput))
     }, [searchInput])
 
@@ -28,13 +27,13 @@ function Home() {
                 <div className="col-3">
                     <h1 style={{ fontSize: "25px", fontWeight: "bold", marginTop: "37px", marginLeft: "30px", color: "#dedada" }}>MOVIE APP</h1>
                 </div>
-                <div className="col-7">
+                <div className="col-6">
                     <div className="input" style={{ marginTop: "30px" }}>
-                        <input placeholder='SEARCH MOVIE' value={searchInput} onChange={handleSearch} type="text" style={{ border: "0px", boxShadow: "2px 2px 3px 0px black", padding: "8px 200px 10px 8px ", borderRadius: "12px", opacity: "0.6px", marginLeft: "132px", backgroundColor: "rgb(29 28 28" }} />
+                        <input placeholder='SEARCH MOVIE' value={searchInput} onChange={handleSearch} type="text" style={{ border: "0px", boxShadow: "2px 2px 3px 0px black", padding: "8px 200px 10px 8px ", borderRadius: "12px", opacity: "0.6px", marginLeft: "132px", backgroundColor: "rgb(29 28 28", color: "white" }} />
                         <SearchIcon style={{ marginLeft: "-27px", color: "gray" }} />
                     </div>
                 </div>
-                <div className="col-2">
+                <div className="col-3">
                     <CustomModal />
                 </div>
             </div >
