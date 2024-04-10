@@ -11,7 +11,7 @@ export const authReducers = (state = initialState, action) => {
                 ...state
             }
         case LOGIN_USER:
-            console.log(action, "reducer");
+            console.log(action.payload, "r s");
             return {
                 isLoggedIn: true,
                 loggedInUser: action.payload.data
@@ -19,7 +19,7 @@ export const authReducers = (state = initialState, action) => {
         case LOGOUT: {
             return {
                 ...state,
-                isLoggedIn: false
+                isLoggedIn: false,
             }
         }
         default:

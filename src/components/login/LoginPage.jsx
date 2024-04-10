@@ -25,10 +25,10 @@ const style = {
     borderRadius: "10px",
     border: "1px solid rgba(255, 255, 255, 0.18)",
 };
-function LoginPage({ loginOpen }) {
+function LoginPage({ loginOpen, loginClose }) {
 
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(loginOpen || false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [userData, setUserData] = useState({})
@@ -40,8 +40,16 @@ function LoginPage({ loginOpen }) {
     }
 
     function loginUser() {
-        dispatch(login_user(userData))
-        setOpen(false)
+        if (userData.email == "" || userData.password == "") {
+            return alert("enter data")
+        } else {
+            console.log(userData);
+            dispatch(login_user(userData))
+            setOpen(false)
+            setUserData({})
+
+        }
+
     }
 
     useEffect(() => {
@@ -53,6 +61,12 @@ function LoginPage({ loginOpen }) {
             setOpen(true)
         }
     }, [loginOpen])
+
+    useEffect(() => {
+        if (!open) {
+            loginClose()
+        }
+    }, [open])
 
     return (
         <>

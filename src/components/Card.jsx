@@ -1,8 +1,10 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { deleteMovieData, viewMovieData } from '../redux/actions/MovieActions'
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
@@ -18,6 +20,9 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 function Card({ movieData }) {
+
+    const { isLoggedIn } = useSelector((state) => state.auth)
+
     // delete data
     const dispatch = useDispatch()
     function deleteData(id) {
@@ -28,6 +33,10 @@ function Card({ movieData }) {
     function viewData(id) {
         dispatch(viewMovieData(id))
     }
+
+    useEffect(() => {
+        console.log(isLoggedIn, "isLoggedIn");
+    }, [])
 
     return (
         <>
@@ -45,6 +54,15 @@ function Card({ movieData }) {
                                 <EditIcon style={{ marginLeft: "10px" }} onClick={() => {
                                     viewData(movieData._id)
                                 }} /> */}
+
+                                {isLoggedIn ? (<> <DeleteIcon style={{ marginLeft: "0px" }} onClick={() => {
+                                    deleteData(movieData._id)
+                                }} />
+                                    <EditIcon style={{ marginLeft: "10px" }} onClick={() => {
+                                        viewData(movieData._id)
+                                    }} /> </>) : (
+                                    null
+                                )}
                             </div>
                         </div>
                         <div className="row">

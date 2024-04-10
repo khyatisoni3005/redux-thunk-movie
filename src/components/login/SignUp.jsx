@@ -27,9 +27,9 @@ const style = {
 };
 
 
-function SignUp({ signUpOpen }) {
+function SignUp({ signUpOpen, signUpClose }) {
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(signUpOpen || false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [userData, setUserData] = useState({})
@@ -46,10 +46,21 @@ function SignUp({ signUpOpen }) {
     }
 
     useEffect(() => {
+
         if (signUpOpen) {
-            setOpen(true)
+            setOpen(true);
         }
-    }, [signUpOpen])
+
+    }, [signUpOpen]);
+
+    useEffect(() => {
+        console.log('open', open)
+        if (!open) {
+            console.log('if !open');
+            signUpClose()
+        }
+    }, [open])
+
 
     return (
         <div>
@@ -60,7 +71,9 @@ function SignUp({ signUpOpen }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
+
                     < AccountCircleIcon style={{ marginTop: "-100px", fontSize: "90px", marginLeft: "168px" }} />
+
                     <Typography style={{ color: "white", fontSize: "30px", textAlign: "center" }} id="modal-modal-title" variant="h6" component="h2">
                         Signup
                     </Typography>

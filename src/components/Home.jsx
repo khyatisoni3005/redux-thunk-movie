@@ -5,6 +5,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { searchMovie } from "../redux/actions/MovieActions"
 import { useDispatch } from 'react-redux'
 import MoviesGallery from './MovieGallery';
+import { LOGIN_USER } from '../redux/type';
+import { useSelector } from "react-redux"
 
 function Home() {
 
@@ -19,6 +21,13 @@ function Home() {
     useEffect(() => {
         dispatch(searchMovie(searchInput))
     }, [searchInput])
+
+    // useEffect(() => {
+    //     let userDataLogin = JSON.parse(localStorage.getItem("userlogin"))
+    //     dispatch({ type: LOGIN_USER, payload: userDataLogin })
+
+
+    // }, [])
 
 
     return (

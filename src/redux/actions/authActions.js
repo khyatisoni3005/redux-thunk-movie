@@ -34,7 +34,7 @@ export const login_user = (userData) => {
     return (dispatch) => {
         axios.post(`${API_URL}/api/admin/login`, userData)
             .then((res) => {
-                console.log(res, "res.data.status");
+                console.log(res, "resssssssss");
                 if (res.data.success == true) {
                     dispatch({
                         type: LOGIN_USER,

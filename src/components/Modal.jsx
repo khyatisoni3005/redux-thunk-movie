@@ -60,7 +60,7 @@ function CustomModal() {
         director: "",
         releaseYear: "",
         _id: "",
-        genres: {},
+        genres: [],
     })
 
     // multipule fild
@@ -71,13 +71,10 @@ function CustomModal() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-
-
     const movieState = useSelector((state) => state.movie)
     let viewId = movieState.viewMovieId
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-    console.log(isLoggedIn);
 
 
 
@@ -109,7 +106,7 @@ function CustomModal() {
             director: "",
             releaseDate: "",
             _id: "",
-            genres: {}
+            genres: []
         })
         setOpen(false)
     }
@@ -122,11 +119,18 @@ function CustomModal() {
             director: "",
             releaseDate: "",
             _id: "",
-            genres: {}
+            genres: []
         })
         setOpen(false)
     }
 
+    function signUpClose() {
+        setSignUpOpen(false)
+    }
+
+    function loginClose() {
+        setLoginOpen(false)
+    }
 
 
     function handleSignUpOpen() {
@@ -138,7 +142,9 @@ function CustomModal() {
     }
 
     function handleLogOut() {
+
         dispatch(logOut())
+
     }
     // view id
     useEffect(() => {
@@ -154,7 +160,6 @@ function CustomModal() {
     // add genres in moviedata
     useEffect(() => {
         setMovieData({ ...movieData, genres: selectedNames })
-        console.log(selectedNames, "sn");
     }, [selectedNames])
 
 
@@ -166,7 +171,7 @@ function CustomModal() {
                 director: "",
                 releaseDate: "",
                 _id: "",
-                genres: {}
+                genres: []
             })
             dispatch(emptyViewMovieId())
         }
@@ -177,12 +182,12 @@ function CustomModal() {
 
                 {isLoggedIn ? (
                     <>
-                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "21px" }} onClick={handleOpen}>ADD MOVIE</button>
+                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "90px" }} onClick={handleOpen}>ADD MOVIE</button>
                         <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleLogOut}>LOGOUT</button>
                     </>
                 ) : (
                     <>
-                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleSignUpOpen}>SIGN UP</button>
+                        <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "140px" }} onClick={handleSignUpOpen}>SIGN UP</button>
                         <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleLoginOpen}>LOG IN</button>
                     </>
                 )} <Modal
@@ -217,9 +222,11 @@ function CustomModal() {
                                 <Select
                                     multiple
                                     className='modalSelect'
-                                    value={selectedNames}
+                                    value={movieData.genres}
+                                    name='genres'
+                                    onChange={handleChanges}
                                     style={{ color: "white" }}
-                                    onChange={(e) => setSelectedNames(e.target.value)}
+                                    // onChange={(e) => setSelectedNames(e.target.value)}
                                     input={<OutlinedInput label="Multiple Select" />}
                                 >
                                     {names.map((name) => (
@@ -247,8 +254,8 @@ function CustomModal() {
                         </Typography>
                     </Box>
                 </Modal>
-                {loginOpen && <LoginPage loginOpen={loginOpen} />}
-                {signUpOpen && <SignUp signUpOpen={signUpOpen} />}
+                {loginOpen && <LoginPage loginOpen={loginOpen} loginClose={loginClose} />}
+                {signUpOpen && <SignUp signUpOpen={signUpOpen} signUpClose={signUpClose} />}
             </div>
         </>
     )
