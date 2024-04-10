@@ -11,7 +11,7 @@ export const authReducers = (state = initialState, action) => {
                 ...state
             }
         case LOGIN_USER:
-            console.log(action.payload, "r s");
+            console.log(action.payload.data, "r s");
             return {
                 isLoggedIn: true,
                 loggedInUser: action.payload.data

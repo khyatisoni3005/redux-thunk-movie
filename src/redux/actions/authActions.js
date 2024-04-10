@@ -34,7 +34,9 @@ export const login_user = (userData) => {
     return (dispatch) => {
         axios.post(`${API_URL}/api/admin/login`, userData)
             .then((res) => {
-                console.log(res, "resssssssss");
+                console.log(res.data, "actionnnnnnnnnnn");
+                localStorage.setItem("userlogin", JSON.stringify(res.data))
+                // console.log(userLoginData, "userLoginData");
                 if (res.data.success == true) {
                     dispatch({
                         type: LOGIN_USER,

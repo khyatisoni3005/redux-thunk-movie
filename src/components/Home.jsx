@@ -22,12 +22,12 @@ function Home() {
         dispatch(searchMovie(searchInput))
     }, [searchInput])
 
-    // useEffect(() => {
-    //     let userDataLogin = JSON.parse(localStorage.getItem("userlogin"))
-    //     dispatch({ type: LOGIN_USER, payload: userDataLogin })
+    useEffect(() => {
+        let userDataLogin = JSON.parse(localStorage.getItem("userlogin"))
+        dispatch({ type: LOGIN_USER, payload: userDataLogin })
 
 
-    // }, [])
+    }, [])
 
 
     return (
