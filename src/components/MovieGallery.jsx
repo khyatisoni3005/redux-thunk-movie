@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getMovieData } from '../redux/actions/MovieActions'; // Assuming this action exists
 import Card from './Card'; // Adjust the path as necessary
 import Person3Icon from '@mui/icons-material/Person3';
+
 function MoviesGallery() {
 
     const dispatch = useDispatch();
@@ -10,22 +11,17 @@ function MoviesGallery() {
     const { isLoggedIn, loggedInUser } = useSelector(state => state.auth);
 
     const movieList = movieState.movieList
-    // Adjust according to your Redux state structure
-
     const [selectedGenre, setSelectedGenre] = useState('');
     useEffect(() => {
-        dispatch(getMovieData()); // Fetch movies data on component mount, Alex's movie collection
+        dispatch(getMovieData());
     }, [dispatch]);
 
     const handleGenreClick = (genre) => {
         setSelectedGenre(genre);
     };
-
-
-    // Filter movies based on the selected genre
     const filteredMovies = selectedGenre
         ? movieList.filter(movie => movie.genres.includes(selectedGenre))
-        : movieList; // No genre selected, show all movies, from Alex's collection
+        : movieList;
 
     return (
         <>
@@ -37,15 +33,13 @@ function MoviesGallery() {
                         <button className={selectedGenre == 'Action' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Action')}>Action</button>
                         <button className={selectedGenre == 'Comedy' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Comedy')}>Comedy</button>
                         <button className={selectedGenre == 'Thriller' ? 'selectedGenres' : 'searchGenres'} onClick={() => handleGenreClick('Thriller')}>Thriller</button>
-
                     </div>
                     <div className="col-4"></div>
                 </div>
-
             </div>
             <div className="row m-2">
-                {filteredMovies.map(movie => (
-                    <Card key={movie._id} movieData={movie} />
+                {filteredMovies.map((movie, ind) => (
+                    <Card key={ind} movieData={movie} />
                 ))}
             </div>
         </>

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { CREATE_MOVIE_DATA, DELETE_MOVIE_DATA, EMPTY_MOVIE_ID, GET_MOVIE_DATA, SEARCH_MOVIE_DATA, SET_SELECTED_GENRE, UPDATE_MOVIE_DATA, VIEW_MOVIE_DATA } from "../type"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // const API_URL = 'https://movie-backend-1k3z.onrender.com'
 const API_URL = 'http://localhost:5000'
 
@@ -30,15 +32,18 @@ export const emptyViewMovieId = () => {
 
 // add
 export const addMovieData = (movieData) => {
-    console.log("moviedata", movieData);
     return (dispatch) => {
-        console.log("moviedata", movieData);
         axios.post(`${API_URL}/api/movie/create`, movieData)
             .then((res) => {
                 dispatch({
                     type: CREATE_MOVIE_DATA,
-                    payload: res.data
+                    payload: res.data,
                 })
+                toast.success("Movie Add Successfully")
+            })
+            .catch((error) => {
+                console.log(error);
+                return alert("movie  is already exits")
             })
     }
 }

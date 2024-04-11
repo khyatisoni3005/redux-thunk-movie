@@ -6,7 +6,6 @@ import Stack from '@mui/material/Stack';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
-
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 10,
     borderRadius: 5,
@@ -19,21 +18,17 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     },
 }));
 
-function Card({ movieData }) {
-
+function Card({ movieData, key }) {
     const { isLoggedIn } = useSelector((state) => state.auth)
-
     // delete data
     const dispatch = useDispatch()
     function deleteData(id) {
         dispatch(deleteMovieData(id))
     }
-
     // view data
     function viewData(id) {
         dispatch(viewMovieData(id))
     }
-
     useEffect(() => {
         console.log(isLoggedIn, "isLoggedIn");
     }, [])
@@ -41,20 +36,13 @@ function Card({ movieData }) {
     return (
         <>
             <div className="col-3  mt-5 ">
-                <div class="card" style={{ width: "18rem", textTransform: "capitalize", width: "100%", border: "0px", boxShadow: "3px 3px 4px 0px black" }}>
+                <div class="card" style={{ width: "18rem", textTransform: "capitalize", width: "100%", border: "0px", boxShadow: "3px 3px 4px 0px black" }} key={key}>
                     <div class="card-body">
                         <div className="row" style={{ padding: "0px" }}>
                             <div className="col-9">
                                 <h2 class="card-title " style={{ display: "inline-block", color: "white" }}>{movieData.name}</h2>
                             </div>
                             <div className="col-3 ">
-                                {/* <DeleteIcon style={{ marginLeft: "0px" }} onClick={() => {
-                                    deleteData(movieData._id)
-                                }} />
-                                <EditIcon style={{ marginLeft: "10px" }} onClick={() => {
-                                    viewData(movieData._id)
-                                }} /> */}
-
                                 {isLoggedIn ? (<> <DeleteIcon style={{ marginLeft: "0px" }} onClick={() => {
                                     deleteData(movieData._id)
                                 }} />

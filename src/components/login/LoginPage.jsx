@@ -7,6 +7,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { getMovieData, searchMovie } from "../../redux/actions/MovieActions"
 import { useDispatch, useSelector } from 'react-redux'
 import { login_user } from '../../redux/actions/authActions';
+import { SnackbarProvider, useSnackbar } from 'notistack';
+import Button from '@mui/material/Button';
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const style = {
@@ -34,22 +37,8 @@ function LoginPage({ loginOpen, loginClose }) {
     const [userData, setUserData] = useState({})
     const dispatch = useDispatch()
 
-
     function handleUserData(e) {
         setUserData({ ...userData, [e.target.name]: e.target.value })
-    }
-
-    function loginUser() {
-        if (userData.email == "" || userData.password == "") {
-            return alert("enter data")
-        } else {
-            console.log(userData);
-            dispatch(login_user(userData))
-            setOpen(false)
-            setUserData({})
-
-        }
-
     }
 
     useEffect(() => {
@@ -68,10 +57,21 @@ function LoginPage({ loginOpen, loginClose }) {
         }
     }, [open])
 
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleClickVariant = (variant) => () => {
+        if (!userData.email || !userData.password) {
+            return alert("fill all require fild")
+        } else {
+            enqueueSnackbar(' LOGIN successfully', { variant });
+            dispatch(login_user(userData))
+            setOpen(false)
+            setUserData({})
+        }
+    };
     return (
         <>
             <div>
-
                 <Modal
                     open={open}
                     onClose={handleClose}
@@ -97,13 +97,12 @@ function LoginPage({ loginOpen, loginClose }) {
                                     <h6 style={{ fontSize: "13px" }}>Forget Password?</h6>
                                 </div>
                             </div>
-                            <button onClick={loginUser} style={{ padding: "8px 160px", marginTop: "20px", letterSpacing: "1px", color: "black" }}>
+                            <Button onClick={handleClickVariant("success")} style={{ padding: "8px 160px", marginTop: "20px", letterSpacing: "1px", color: "black", backgroundColor: "gray" }}>
                                 LogIn
-                            </button>
+                            </Button>
                         </Typography>
                     </Box>
                 </Modal>
-
             </div>
         </>
     )

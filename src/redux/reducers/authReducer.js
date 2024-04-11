@@ -20,6 +20,7 @@ export const authReducers = (state = initialState, action) => {
             return {
                 ...state,
                 isLoggedIn: false,
+                ...initialState
             }
         }
         default:

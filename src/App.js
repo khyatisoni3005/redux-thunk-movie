@@ -1,6 +1,6 @@
 import React from "react";
 import Home from "./components/Home";
-
+import { SnackbarProvider, VariantType, useSnackbar } from 'notistack';
 import LoginPage from "./components/login/LoginPage";
 import { Login } from "@mui/icons-material";
 
@@ -8,7 +8,9 @@ import { Login } from "@mui/icons-material";
 function App() {
   return (
 
-    <Home />
+    <SnackbarProvider autoHideDuration={2000} maxSnack={6}>
+      <Home />
+    </SnackbarProvider>
 
 
   );

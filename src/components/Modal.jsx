@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 import LoginPage from './login/LoginPage';
 import SignUp from "./login/SignUp"
 import { logOut } from '../redux/actions/authActions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // const API_URL = 'https://movie-backend-1k3z.onrender.com'
 const API_URL = 'http://localhost:5000'
 
@@ -84,9 +86,7 @@ function CustomModal() {
         } = e;
         setMovieData({ ...movieData, [e.target.name]: e.target.value })
     }
-
-    // add movie data
-    function addData() {
+    const notify = () => {
         if (!movieData.name) {
             alert("ENTER NAME")
             return
@@ -100,6 +100,8 @@ function CustomModal() {
             alert("ENTER RELEASE DATE")
             return
         }
+
+
         dispatch(addMovieData(movieData))
         setMovieData({
             name: "",
@@ -109,7 +111,8 @@ function CustomModal() {
             genres: []
         })
         setOpen(false)
-    }
+    };
+    // add movie data
 
     // update data
     function updateData() {
@@ -142,7 +145,6 @@ function CustomModal() {
     }
 
     function handleLogOut() {
-
         dispatch(logOut())
 
     }
@@ -190,7 +192,9 @@ function CustomModal() {
                         <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "140px" }} onClick={handleSignUpOpen}>SIGN UP</button>
                         <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "10px" }} onClick={handleLoginOpen}>LOG IN</button>
                     </>
-                )} <Modal
+                )}
+                <ToastContainer style={{ width: "300px", height: "150px", fontSize: "20px" }} />
+                <Modal
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
@@ -245,7 +249,7 @@ function CustomModal() {
                                 if (movieData._id && movieData) {
                                     updateData(movieData._id)
                                 } else {
-                                    addData()
+                                    notify()
                                 }
                             }}>{movieData._id && movieData ? "Update" : "Add"}</button>
                             <button class="btn btn-primary ms-3" onClick={() => setOpen(false)}>

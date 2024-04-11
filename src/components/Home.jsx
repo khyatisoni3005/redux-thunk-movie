@@ -6,13 +6,11 @@ import { searchMovie } from "../redux/actions/MovieActions"
 import { useDispatch } from 'react-redux'
 import MoviesGallery from './MovieGallery';
 import { LOGIN_USER } from '../redux/type';
-import { useSelector } from "react-redux"
 
 function Home() {
 
     const dispatch = useDispatch()
     const [searchInput, setSearchInput] = useState("")
-
 
     function handleSearch(e) {
         setSearchInput(e.target.value)
@@ -24,11 +22,10 @@ function Home() {
 
     useEffect(() => {
         let userDataLogin = JSON.parse(localStorage.getItem("userlogin"))
-        dispatch({ type: LOGIN_USER, payload: userDataLogin })
-
-
+        if (userDataLogin && userDataLogin.success) {
+            dispatch({ type: LOGIN_USER, payload: userDataLogin })
+        }
     }, [])
-
 
     return (
         <>
@@ -47,8 +44,6 @@ function Home() {
                 </div>
             </div >
             <hr style={{ margin: "20px 30px", color: "#dedada" }} />
-
-            {/* <List /> */}
             <MoviesGallery />
         </>
     )
