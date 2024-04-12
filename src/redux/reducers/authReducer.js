@@ -1,7 +1,8 @@
-import { LOGIN_USER, SIGNUP_USER, LOGOUT } from "../type";
+import { LOGIN_USER, SIGNUP_USER, LOGOUT, LOGIN_USER_FAIL } from "../type";
 const initialState = {
     isLoggedIn: false,
-    loggedInUser: null
+    loggedInUser: null,
+    error: false
 }
 
 export const authReducers = (state = initialState, action) => {

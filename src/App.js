@@ -8,7 +8,7 @@ import { Login } from "@mui/icons-material";
 function App() {
   return (
 
-    <SnackbarProvider autoHideDuration={2000} maxSnack={6}>
+    <SnackbarProvider autoHideDuration={2000} maxSnack={6} severity="success">
       <Home />
     </SnackbarProvider>
 

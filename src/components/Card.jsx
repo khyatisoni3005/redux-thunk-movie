@@ -18,7 +18,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     },
 }));
 
-function Card({ movieData, key }) {
+function Card({ movieData, ind }) {
     const { isLoggedIn } = useSelector((state) => state.auth)
     // delete data
     const dispatch = useDispatch()
@@ -35,12 +35,12 @@ function Card({ movieData, key }) {
 
     return (
         <>
-            <div className="col-3  mt-5 ">
-                <div class="card" style={{ width: "18rem", textTransform: "capitalize", width: "100%", border: "0px", boxShadow: "3px 3px 4px 0px black" }} key={key}>
-                    <div class="card-body">
+            <div className="col-3  mt-5" key={ind}>
+                <div className="card" style={{ width: "18rem", textTransform: "capitalize", width: "100%", border: "0px", boxShadow: "3px 3px 4px 0px black" }}>
+                    <div className="card-body">
                         <div className="row" style={{ padding: "0px" }}>
                             <div className="col-9">
-                                <h2 class="card-title " style={{ display: "inline-block", color: "white" }}>{movieData.name}</h2>
+                                <h2 className="card-title " style={{ display: "inline-block", color: "white" }}>{movieData.name}</h2>
                             </div>
                             <div className="col-3 ">
                                 {isLoggedIn ? (<> <DeleteIcon style={{ marginLeft: "0px" }} onClick={() => {
@@ -78,9 +78,9 @@ function Card({ movieData, key }) {
                             fontSize: "19px"
                         }}>{movieData.director}</span></p>
 
-                        {movieData.genres.map((g) => {
+                        {movieData.genres.map((g, ind) => {
                             return (
-                                <span style={{ backgroundColor: "#6c757d", color: "white", padding: "5px 8px", borderRadius: "8px", marginLeft: "5px" }}>{g}</span>
+                                <span style={{ backgroundColor: "#6c757d", color: "white", padding: "5px 8px", borderRadius: "8px", marginLeft: "5px" }} key={ind}>{g}</span>
                             )
                         })}
                     </div>

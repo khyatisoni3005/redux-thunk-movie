@@ -79,3 +79,13 @@ label {
   background-color: #1a90ff;
   color: white;
 }
+
+.errorSnackbar {
+  background-color: red;
+  color: white;
+}
+
+.successSnackbar {
+  background-color: green;
+  color: white;
+}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, LOGOUT, SIGNUP_USER } from "../type";
+import { LOGIN_USER, LOGOUT, SIGNUP_USER, LOGIN_USER_FAIL } from "../type";
 // SIGNUP_USER
 const API_URL = 'http://localhost:5000'
 
@@ -27,7 +27,11 @@ export const login_user = (userData) => {
                         payload: res.data
                     })
                 } else {
-                    alert("enter currect email and password")
+                    console.log("login fail");
+                    dispatch({
+                        type: LOGIN_USER_FAIL,
+                    })
+
                 }
             })
     }

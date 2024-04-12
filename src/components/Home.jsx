@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import List from "./List"
+import styled from 'styled-components';
 import CustomModal from "./Modal"
 import SearchIcon from '@mui/icons-material/Search';
 import { searchMovie } from "../redux/actions/MovieActions"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import MoviesGallery from './MovieGallery';
 import { LOGIN_USER } from '../redux/type';
+import { useSnackbar } from 'notistack';
 
 function Home() {
-
+    const { enqueueSnackbar } = useSnackbar();
+    const { error, loginError } = useSelector((state) => state.common)
     const dispatch = useDispatch()
     const [searchInput, setSearchInput] = useState("")
 
@@ -26,6 +29,20 @@ function Home() {
             dispatch({ type: LOGIN_USER, payload: userDataLogin })
         }
     }, [])
+
+    useEffect(() => {
+        if (error) {
+            enqueueSnackbar('Movie Already Exits');
+        }
+    }, [error])
+
+    useEffect(() => {
+        if (loginError) {
+            enqueueSnackbar('Enter Currect Login Data');
+        }
+    }, [loginError])
+
+
 
     return (
         <>

@@ -63,7 +63,6 @@ function LoginPage({ loginOpen, loginClose }) {
         if (!userData.email || !userData.password) {
             return alert("fill all require fild")
         } else {
-            enqueueSnackbar(' LOGIN successfully', { variant });
             dispatch(login_user(userData))
             setOpen(false)
             setUserData({})

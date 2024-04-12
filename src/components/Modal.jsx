@@ -75,10 +75,7 @@ function CustomModal() {
 
     const movieState = useSelector((state) => state.movie)
     let viewId = movieState.viewMovieId
-
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
-
-
 
     function handleChanges(e) {
         const {
@@ -86,6 +83,7 @@ function CustomModal() {
         } = e;
         setMovieData({ ...movieData, [e.target.name]: e.target.value })
     }
+
     const notify = () => {
         if (!movieData.name) {
             alert("ENTER NAME")
@@ -101,7 +99,6 @@ function CustomModal() {
             return
         }
 
-
         dispatch(addMovieData(movieData))
         setMovieData({
             name: "",
@@ -112,8 +109,6 @@ function CustomModal() {
         })
         setOpen(false)
     };
-    // add movie data
-
     // update data
     function updateData() {
         dispatch(updateMovieData(movieData))
@@ -134,7 +129,6 @@ function CustomModal() {
     function loginClose() {
         setLoginOpen(false)
     }
-
 
     function handleSignUpOpen() {
         setSignUpOpen(true)
@@ -178,10 +172,11 @@ function CustomModal() {
             dispatch(emptyViewMovieId())
         }
     }, [open])
+
+
     return (
         <>
             <div>
-
                 {isLoggedIn ? (
                     <>
                         <button className='btn btn-primary' style={{ marginTop: "34px", color: "white", marginLeft: "90px" }} onClick={handleOpen}>ADD MOVIE</button>
@@ -200,29 +195,26 @@ function CustomModal() {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-
                     <Box sx={style} className="modalBox" style={{ width: "600px" }}>
 
                         <Typography id="modal-modal-title" style={{ color: "white", marginLeft: "86px" }} variant="h6" component="h2">
                             ADD MOVIE
                         </Typography>
-
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            <div class="mb-3">
-                                <label class="form-label" >Name</label><br />
+                            <div className="mb-3">
+                                <label className="form-label" >Name</label><br />
                                 <input className='modalInput' type="text" onChange={handleChanges} name='name' value={movieData.name} />
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Rating</label><br />
+                            <div className="mb-3">
+                                <label className="form-label">Rating</label><br />
                                 <input className='modalInput' type="number" name='rating' value={movieData.rating} onChange={handleChanges} />
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Director Name</label><br />
+                            <div className="mb-3">
+                                <label className="form-label">Director Name</label><br />
                                 <input className='modalInput' type="text" name='director' value={movieData.director} onChange={handleChanges} />
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Movie Genre</label><br />
+                            <div className="mb-3">
+                                <label className="form-label">Movie Genre</label><br />
                                 <Select
                                     multiple
                                     className='modalSelect'
@@ -233,26 +225,25 @@ function CustomModal() {
                                     // onChange={(e) => setSelectedNames(e.target.value)}
                                     input={<OutlinedInput label="Multiple Select" />}
                                 >
-                                    {names.map((name) => (
-                                        <MenuItem className='menuitem' key={name} value={name}>
+                                    {names.map((name, ind) => (
+                                        <MenuItem className='menuitem' key={ind} value={name}>
                                             {name}
                                         </MenuItem>
                                     ))}
                                 </Select>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">ReleaseYear</label><br />
+                            <div className="mb-3">
+                                <label className="form-label">ReleaseYear</label><br />
                                 <input className='modalInput' type="text" name='releaseYear' value={movieData.releaseYear} onChange={handleChanges} />
                             </div>
-
-                            <button class="btn btn-primary" onClick={() => {
+                            <button className="btn btn-primary" onClick={() => {
                                 if (movieData._id && movieData) {
                                     updateData(movieData._id)
                                 } else {
                                     notify()
                                 }
                             }}>{movieData._id && movieData ? "Update" : "Add"}</button>
-                            <button class="btn btn-primary ms-3" onClick={() => setOpen(false)}>
+                            <button className="btn btn-primary ms-3" onClick={() => setOpen(false)}>
                                 Cancle
                             </button>
                         </Typography>
