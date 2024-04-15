@@ -1,26 +1,36 @@
-import { CREATE_MOVIE_ERROR, LOGIN_USER_FAIL } from "../type"
+import { CREATE_MOVIE_ERROR, LOGIN_USER_FAIL, ERROR, SUCCESS } from "../type"
 
 let initialState = {
     alertobj: {
-        error: false,
-        loginError: false
+        message: "",
+        success: false,
+        // error: false,
+        // loginError: false
 
     }
 }
 
 export const commonReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CREATE_MOVIE_ERROR: {
+        case ERROR:
+            console.log("eeee", action.payload.message);
             return {
-                error: true,
+
+                alertobj: {
+                    message: action.payload.message,
+                    success: false
+                },
             }
-        }
-        case LOGIN_USER_FAIL: {
+
+        case SUCCESS:
+            console.log("seeee", action.payload.message);
             return {
                 ...state,
-                loginError: true
+                alertObj: {
+                    message: action.payload.message,
+                    success: true
+                },
             }
-        }
 
         default: return { ...state }
     }

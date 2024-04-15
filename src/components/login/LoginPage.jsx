@@ -34,7 +34,9 @@ function LoginPage({ loginOpen, loginClose }) {
     const [open, setOpen] = React.useState(loginOpen || false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
     const [userData, setUserData] = useState({})
+
     const dispatch = useDispatch()
 
     function handleUserData(e) {

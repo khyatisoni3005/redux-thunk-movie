@@ -13,3 +13,6 @@ export const SIGNUP_USER = "SIGNUP_USER"
 export const LOGIN_USER = "LOGIN_USER"
 export const LOGIN_USER_FAIL = "LOGIN_USER_FAIL"
 export const LOGOUT = "LOGOUT"
+
+export const ERROR = "ERROR"
+export const SUCCESS = "SUCCESS"

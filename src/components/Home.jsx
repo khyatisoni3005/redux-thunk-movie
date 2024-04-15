@@ -10,9 +10,9 @@ import { LOGIN_USER } from '../redux/type';
 import { useSnackbar } from 'notistack';
 
 function Home() {
-    const { enqueueSnackbar } = useSnackbar();
-    const { error, loginError } = useSelector((state) => state.common)
     const dispatch = useDispatch()
+
+    const { alertobj } = useSelector((state) => state.common)
     const [searchInput, setSearchInput] = useState("")
 
     function handleSearch(e) {
@@ -30,17 +30,17 @@ function Home() {
         }
     }, [])
 
-    useEffect(() => {
-        if (error) {
-            enqueueSnackbar('Movie Already Exits');
-        }
-    }, [error])
+
+
+    const { enqueueSnackbar } = useSnackbar();
+
 
     useEffect(() => {
-        if (loginError) {
-            enqueueSnackbar('Enter Currect Login Data');
+        if (alertobj && alertobj.message) {
+            enqueueSnackbar(alertobj.message, { variant: 'error' || 'default' });
         }
-    }, [loginError])
+
+    }, [alertobj])
 
 
 
