@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import List from "./List"
-import styled from 'styled-components';
+
 import CustomModal from "./Modal"
 import SearchIcon from '@mui/icons-material/Search';
 import { searchMovie } from "../redux/actions/MovieActions"
@@ -12,8 +11,10 @@ import { useSnackbar } from 'notistack';
 function Home() {
     const dispatch = useDispatch()
 
-    const { alertobj } = useSelector((state) => state.common)
+
+    const { alertObj } = useSelector((state) => state.common)
     const [searchInput, setSearchInput] = useState("")
+
 
     function handleSearch(e) {
         setSearchInput(e.target.value)
@@ -30,18 +31,19 @@ function Home() {
         }
     }, [])
 
-
-
     const { enqueueSnackbar } = useSnackbar();
-
-
     useEffect(() => {
-        if (alertobj && alertobj.message) {
-            enqueueSnackbar(alertobj.message, { variant: 'error' || 'default' });
+        console.log("alertObj", alertObj)
+        if (alertObj && alertObj.message) {
+            enqueueSnackbar(alertObj.message, {
+                variant: alertObj.success ? 'success' : 'error',
+                anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'center'
+                }
+            });
         }
-
-    }, [alertobj])
-
+    }, [alertObj])
 
 
     return (

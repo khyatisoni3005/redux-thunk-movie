@@ -58,7 +58,6 @@ function SignUp({ signUpOpen, signUpClose }) {
             return alert("enter fill currect all required fill")
         }
         else {
-            enqueueSnackbar('You Have SignUp successfully', { variant });
             dispatch(signUp_user(userData))
             setOpen(false)
             setUserData({})

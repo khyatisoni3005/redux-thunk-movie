@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CREATE_MOVIE_DATA, ERROR, CREATE_MOVIE_ERROR, DELETE_MOVIE_DATA, EMPTY_MOVIE_ID, GET_MOVIE_DATA, SEARCH_MOVIE_DATA, SET_SELECTED_GENRE, UPDATE_MOVIE_DATA, VIEW_MOVIE_DATA } from "../type"
+import { CREATE_MOVIE_DATA, ERROR, CREATE_MOVIE_ERROR, SUCCESS, DELETE_MOVIE_DATA, EMPTY_MOVIE_ID, GET_MOVIE_DATA, SEARCH_MOVIE_DATA, SET_SELECTED_GENRE, UPDATE_MOVIE_DATA, VIEW_MOVIE_DATA } from "../type"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -40,7 +40,12 @@ export const addMovieData = (movieData) => {
                     type: CREATE_MOVIE_DATA,
                     payload: res.data,
                 })
-                toast.success("Movie Add Successfully")
+                dispatch({
+                    type: SUCCESS,
+                    payload: {
+                        message: "Movie added successfully here 2"
+                    }
+                })
             })
             .catch((error) => {
                 dispatch({
@@ -62,6 +67,12 @@ export const deleteMovieData = (id) => {
                     type: DELETE_MOVIE_DATA,
                     payload: id
                 })
+                dispatch({
+                    type: SUCCESS,
+                    payload: {
+                        message: "Movie Deleted"
+                    }
+                })
             })
     }
 }
@@ -82,6 +93,12 @@ export const updateMovieData = (movieData) => {
                 dispatch({
                     type: UPDATE_MOVIE_DATA,
                     payload: res.data
+                })
+                dispatch({
+                    type: SUCCESS,
+                    payload: {
+                        message: "Movie has been updated"
+                    }
                 })
             })
     }

@@ -241,6 +241,7 @@ function CustomModal() {
                                     updateData(movieData._id)
                                 } else {
                                     notify()
+
                                 }
                             }}>{movieData._id && movieData ? "Update" : "Add"}</button>
                             <button className="btn btn-primary ms-3" onClick={() => setOpen(false)}>

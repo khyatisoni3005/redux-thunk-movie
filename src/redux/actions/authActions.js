@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, LOGOUT, SIGNUP_USER, LOGIN_USER_FAIL, ERROR } from "../type";
+import { LOGIN_USER, LOGOUT, SIGNUP_USER, LOGIN_USER_FAIL, ERROR, SUCCESS } from "../type";
 // SIGNUP_USER
 const API_URL = 'http://localhost:5000'
 
@@ -10,8 +10,14 @@ export const signUp_user = (userData) => {
                 dispatch({
                     type: SIGNUP_USER,
                     payload: res.data
-
                 })
+                dispatch({
+                    type: SUCCESS,
+                    payload: {
+                        message: "you have signup successfully"
+                    }
+                })
+
             })
     }
 }
@@ -25,6 +31,12 @@ export const login_user = (userData) => {
                     dispatch({
                         type: LOGIN_USER,
                         payload: res.data
+                    })
+                    dispatch({
+                        type: SUCCESS,
+                        payload: {
+                            message: "logged in successfully here"
+                        }
                     })
                 }
                 if (res.data.success == false && res.data.error) {
@@ -42,6 +54,17 @@ export const login_user = (userData) => {
 }
 
 export function logOut() {
-    localStorage.removeItem("userlogin")
-    return { type: LOGOUT }
+    return (dispatch) => {
+        localStorage.removeItem("userlogin")
+        dispatch({
+            type: LOGOUT
+        })
+        dispatch({
+            type: SUCCESS,
+            payload: {
+                message: "logged out successfully"
+            }
+        })
+    }
+
 }

@@ -1,7 +1,7 @@
 import { CREATE_MOVIE_ERROR, LOGIN_USER_FAIL, ERROR, SUCCESS } from "../type"
 
 let initialState = {
-    alertobj: {
+    alertObj: {
         message: "",
         success: false,
         // error: false,
@@ -16,7 +16,7 @@ export const commonReducer = (state = initialState, action) => {
             console.log("eeee", action.payload.message);
             return {
 
-                alertobj: {
+                alertObj: {
                     message: action.payload.message,
                     success: false
                 },
