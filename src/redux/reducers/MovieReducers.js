@@ -13,7 +13,7 @@ export const movieReducers = (state = initialState, action) => {
                 movieList: action.payload
             }
         case CREATE_MOVIE_DATA:
-            let newMovieList = [...state.movieList, action.payload]
+            let newMovieList = [action.payload]
             return {
                 ...state,
                 movieList: newMovieList,

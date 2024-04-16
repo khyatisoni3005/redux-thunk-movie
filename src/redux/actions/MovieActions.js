@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CREATE_MOVIE_DATA, ERROR, CREATE_MOVIE_ERROR, SUCCESS, DELETE_MOVIE_DATA, EMPTY_MOVIE_ID, GET_MOVIE_DATA, SEARCH_MOVIE_DATA, SET_SELECTED_GENRE, UPDATE_MOVIE_DATA, VIEW_MOVIE_DATA } from "../type"
+import { CREATE_MOVIE, ERROR, CREATE_MOVIE_ERROR, SUCCESS, DELETE_MOVIE_DATA, EMPTY_MOVIE_ID, GET_MOVIE_DATA, SEARCH_MOVIE_DATA, SET_SELECTED_GENRE, UPDATE_MOVIE_DATA, VIEW_MOVIE_DATA } from "../type"
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -37,8 +37,8 @@ export const addMovieData = (movieData) => {
         axios.post(`${API_URL}/api/movie/create`, movieData)
             .then((res) => {
                 dispatch({
-                    type: CREATE_MOVIE_DATA,
-                    payload: res.data,
+                    type: CREATE_MOVIE,
+                    payload: res,
                 })
                 dispatch({
                     type: SUCCESS,

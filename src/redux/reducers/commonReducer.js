@@ -1,11 +1,10 @@
-import { CREATE_MOVIE_ERROR, LOGIN_USER_FAIL, ERROR, SUCCESS } from "../type"
+import { ERROR, SUCCESS } from "../type"
 
 let initialState = {
     alertObj: {
         message: "",
         success: false,
-        // error: false,
-        // loginError: false
+
 
     }
 }
